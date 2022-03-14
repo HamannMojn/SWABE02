@@ -1,0 +1,13 @@
+version: '3'
+services:
+  postgres:
+    container_name: abe_pg
+    image: agilelabs/gia-pg:main
+    expose:
+      - 5432
+    ports:
+      - '5433:5433'
+    environment:
+      - POSTGRES_DB=postgres-db
+      - POSTGRES_PASSWORD=docker
+      - PGDATA=postgres-db-data

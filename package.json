@@ -1,0 +1,27 @@
+{
+  "name": "swabe02",
+  "version": "1.0.0",
+  "description": "assignment number 2 in SWABE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js",
+    "start-db": "docker-compose -f db/docker-postgres.yml up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HamannMojn/SWABE02.git"
+  },
+  "author": "HamannMojn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HamannMojn/SWABE02/issues"
+  },
+  "homepage": "https://github.com/HamannMojn/SWABE02#readme",
+  "dependencies": {
+    "apollo-server": "^3.6.4",
+    "graphql": "^16.3.0",
+    "nodemon": "^2.0.15",
+    "prisma": "^3.10.0"
+  }
+}
