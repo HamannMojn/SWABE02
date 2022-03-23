@@ -9,8 +9,8 @@ const reservationType = gql`
     }
 
     type Query {
-        reservations: [Reservation!]
-        reservation: Reservation!
+        getReservations: [Reservation!]
+        getReservation: Reservation!
     }
 
     type Mutation {

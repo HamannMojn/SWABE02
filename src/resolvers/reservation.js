@@ -1,7 +1,7 @@
 const { prismaClient } =  require("../../prisma/prismaClient.js");
 
-const Mutations = {
-    createReservation: (parent, args) =>{
+const resolverReservation = {
+    createReservation: (parent, args) => {
         return prismaClient.reservation.create({
             data: {
                 userId: args.userId,
@@ -9,5 +9,17 @@ const Mutations = {
                 dateFrom: args.dateFrom
             }
         })
+    },
+    getReservations: (parent, args) => {
+        return prismaClient.reservation.findMany({});
+    },
+    getReservation: (parent, args) => {
+        return prismaClient.reservation.findFirst({
+            where: { id: args.id}
+        });
     }
+}
+
+module.exports = {
+    resolverReservation
 }

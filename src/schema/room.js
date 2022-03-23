@@ -6,6 +6,7 @@ const roomType = gql`
         roomNumber: Int!
         roomType: RoomType!
         price: Float!
+        reservation: Reservation
     }
 
     enum RoomType {
@@ -16,8 +17,8 @@ const roomType = gql`
     }
 
     type Query {
-        rooms: [Room!]
-        room: Room!
+        getRooms: [Room!]
+        getRoom: Room!
     }
 
     type Mutation {
