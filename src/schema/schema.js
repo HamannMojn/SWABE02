@@ -2,14 +2,8 @@ const { userType } = require('./user.js');
 const { roomType } = require('./room.js');
 const { reservationType } = require('./reservation');
 
-const { resolverUser} = require('../resolvers/user');
-const { resolverRoom} = require('../resolvers/room');
-const { resolverReservation} = require('../resolvers/reservation');
-const { merge } = require('lodash');
 const {gql} = require("apollo-server");
 
-const stringdefs = merge(userType, roomType, reservationType);
-const resolvers = merge(resolverUser, resolverRoom, resolverReservation);
 
 const typeDefs = gql`
 type User {
@@ -29,6 +23,10 @@ enum Role {
 type Query {
     getUsers: [User!]
     getUser: User!
+    getReservations: [Reservation!]
+    getReservation: Reservation!
+    getRooms: [Room!]
+    getRoom: Room!
 }
 
 type Mutation {
@@ -38,6 +36,17 @@ type Mutation {
         lastName: String!
         role: Role
     ): User!
+    createRoom(
+        roomNumber: Int!
+        roomType: RoomType!
+        price: Float!
+    ): Room!
+    createReservation(
+        userId: Int!
+        roomNumber: Int!
+        roomType: RoomType!
+        price: Float!
+    ): Reservation!
 }
 type Reservation {
     id: ID!
@@ -46,19 +55,6 @@ type Reservation {
     dateTo: String!
 }
 
-type Query {
-    getReservations: [Reservation!]
-    getReservation: Reservation!
-}
-
-type Mutation {
-    createReservation(
-        userId: Int!
-        roomNumber: Int!
-        roomType: RoomType!
-        price: Float!
-    ): Reservation!
-}
 type Room {
     id: ID!
     roomNumber: Int!
@@ -73,21 +69,8 @@ enum RoomType {
     Exclusive
     Presidential
 }
-
-type Query {
-    getRooms: [Room!]
-    getRoom: Room!
-}
-
-type Mutation {
-    createRoom(
-        roomNumber: Int!
-        roomType: RoomType!
-        price: Float!
-    ): Room!
-}
 `
 
 module.exports = {
-    typeDefs, resolvers
+    typeDefs
 }
