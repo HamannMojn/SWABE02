@@ -1,6 +1,3 @@
-const { userType } = require('./user.js');
-const { roomType } = require('./room.js');
-const { reservationType } = require('./reservation');
 
 const {gql} = require("apollo-server");
 
